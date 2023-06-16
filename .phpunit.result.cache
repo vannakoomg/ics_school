@@ -1,0 +1,1 @@
+{"version":1,"defects":{"Tests\\Feature\\CalendarTest::testCalendarPageIsLoadingForAdmin":4,"Tests\\Feature\\CalendarTest::testCalendarPageShowsLessonForTeacher":4},"times":{"Tests\\Unit\\ExampleTest::testBasicTest":0.435,"Tests\\Feature\\CalendarTest::testCalendarPageIsLoadingForAdmin":0.306,"Tests\\Feature\\CalendarTest::testCalendarPageShowsLessonForTeacher":0.05}}

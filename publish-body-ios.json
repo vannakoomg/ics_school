@@ -1,0 +1,11 @@
+{
+  "interests": ["hello"],
+  "apns": {
+    "aps": {
+      "alert": {
+        "title": "Hello",
+        "body": "Hello, world!"
+      }
+    }
+  }
+}
