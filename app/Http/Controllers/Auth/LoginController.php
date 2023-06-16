@@ -39,8 +39,4 @@ class LoginController extends Controller
     }
 
 
-    // public function loggedOut()
-    // {
-    //         //    dd('logout');
-    // }
 }
