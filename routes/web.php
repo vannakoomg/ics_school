@@ -149,6 +149,9 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::post('calling_dashboard/action_update/{rfid}', 'CallingController@action_update')->name('calling.action_update');
     Route::post('calling_dashboard/action_notification/{rfid}', 'CallingController@action_notification')->name('calling.action_notification');
     Route::get('calling_dashboard/getwaitingvoice', 'CallingController@getwaitingvoice')->name('calling.getwaitingvoice');
-
-    
+    // evenet
+    Route::get('events','EventsController@index'); 
+    Route::post('events','EventsController@store');
+    Route::get('getEvent','EventsController@getEvent');
+    Route::delete('events','EventsController@deleteEvent');
 });

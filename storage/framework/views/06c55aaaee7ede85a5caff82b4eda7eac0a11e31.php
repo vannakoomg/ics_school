@@ -240,12 +240,12 @@
             <?php endif; ?>
             <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('notification')): ?>
                 <li class="nav-item">
-                    <a href="<?php echo e(route('admin.evnets.index'), false); ?>"
-                        class="nav-link <?php echo e(request()->is('admin/notify/*') ? 'active' : '', false); ?>">
-                        <i class="fa-fw fas fa-envelope nav-icon">
+                    
+                    class="nav-link <?php echo e(request()->is('admin/notify/*') ? 'active' : '', false); ?>">
+                    <i class="fa-fw fas fa-envelope nav-icon">
 
-                        </i>
-                        <?php echo e(trans('Events'), false); ?>
+                    </i>
+                    <?php echo e(trans('Events'), false); ?>
 
                     </a>
                 </li>
@@ -277,4 +277,4 @@
     </nav>
     <button class="sidebar-minimizer brand-minimizer" type="button"></button>
 </div>
-<?php /**PATH D:\wrok_in_ics\2023_06_09-school\resources\views/partials/menu.blade.php ENDPATH**/ ?>
+<?php /**PATH D:\wrok_in_ics\web_backend\resources\views/partials/menu.blade.php ENDPATH**/ ?>

@@ -1,81 +1,4 @@
-{{-- @extends('layouts.admin')
-@section('content')
-    <div class="container-fluid">
-        <div class="panel panel-primary ">
-            <div class="panel-heading mt-4 pt-5">
-                Events
-            </div>
-            <div class="panel-body">
-                <div id='calendar'></div>
-            </div>
-        </div>
-    </div>
-@endsection
 
-@section('scripts')
-    @parent
-    <script>
-        $(document).ready(function() {
-            var calendar = $('#calendar').fullCalendar({
-                header: {
-                    left: 'prev,next',
-                    center: 'title', // right: 'month,basicWeek,basicDay'
-                    right: 'month'
-                },
-                // navLinks: true,
-                editable: true,
-                events: "http://127.0.0.1:8000/admin/getEvent",
-                displayEventTime: false,
-                eventRender: function(event, element, view) {
-                    if (event.allDay === 'true') {
-                        event.allDay = true;
-                    } else {
-                        event.allDay = false;
-                    }
-                },
-                selectable: true,
-                selectHelper: true,
-                select: function(start, end, allDay) {
-                    // $('#eventsModal').modal('toggle');
-                    var title = prompt('Event Title ');
-                    if (title) {
-                        var start = moment(start, 'DD.MM.YYYY').format('YYYY-MM-DD');
-                        var end = moment(end, 'DD.MM.YYYY').format('YYYY-MM-DD');
-
-                        $.ajax({
-                            url: "http://127.0.0.1:8000/admin/events",
-                            data: "title=" + title + "&start=" + start + "&end=" + end +
-                                '&_token=' +
-                                "{{ csrf_token() }}",
-                            type: "POST",
-                            success: function(data) {
-                                $('#calendar').fullCalendar('refetchEvents');
-                            },
-                            error: function(data) {
-                                console.log(data);
-                            }
-                        });
-                    }
-                },
-                eventClick: function(event) {
-                    var deleteMsg = confirm("Do you really want to delete?");
-                    if (deleteMsg) {
-                        $.ajax({
-                            type: "DELETE",
-                            url: "http://127.0.0.1:8000/admin/events",
-                            data: "id=" + event.id + '&_token=' + "{{ csrf_token() }}",
-                            success: function(response) {
-                                if (parseInt(response) > 0) {
-                                    $('#calendar').fullCalendar('removeEvents', event.id);
-                                }
-                            }
-                        });
-                    }
-                }
-            });
-        });
-    </script>
-@endsection --}}
 
 <!doctype html>
 <html lang="en">
@@ -159,7 +82,7 @@
                         url: "http://127.0.0.1:8000/admin/events",
                         data: "title=" + title + "&start=" + start + "&end=" + end +
                             '&_token=' +
-                            "{{ csrf_token() }}",
+                            "<?php echo e(csrf_token(), false); ?>",
                         type: "POST",
                         success: function(data) {
                             $('#calendar').fullCalendar('refetchEvents');
@@ -176,7 +99,7 @@
                     $.ajax({
                         type: "DELETE",
                         url: "http://127.0.0.1:8000/admin/events",
-                        data: "id=" + event.id + '&_token=' + "{{ csrf_token() }}",
+                        data: "id=" + event.id + '&_token=' + "<?php echo e(csrf_token(), false); ?>",
                         success: function(response) {
                             if (parseInt(response) > 0) {
                                 $('#calendar').fullCalendar('removeEvents', event.id);
@@ -190,3 +113,4 @@
 </script>
 
 </html>
+<?php /**PATH D:\wrok_in_ics\web_backend\resources\views/admin/events/index.blade.php ENDPATH**/ ?>

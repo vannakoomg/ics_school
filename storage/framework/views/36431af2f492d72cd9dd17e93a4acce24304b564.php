@@ -157,4 +157,4 @@
     <?php echo \Illuminate\View\Factory::parentPlaceholder('scripts'); ?>
 <?php $__env->stopSection(); ?>
 
-<?php echo $__env->make('layouts.admin', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH D:\wrok_in_ics\2023_06_09-school\resources\views/home.blade.php ENDPATH**/ ?>
+<?php echo $__env->make('layouts.admin', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH D:\wrok_in_ics\web_backend\resources\views/home.blade.php ENDPATH**/ ?>

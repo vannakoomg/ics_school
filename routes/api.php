@@ -1,5 +1,5 @@
 <?php
-
+use App\Http\Controllers\Api02\EventsController;
 Route::post('login', 'Api\V1\Admin\UsersApiController@login');
 
 Route::post('register', 'Api\V1\Admin\UsersApiController@register');
@@ -9,6 +9,7 @@ Route::post('addattendance', 'Api\V1\Admin\AttendanceApiController@addAttendance
 Route::get('calling-addnew/{rfidcard}', 'Api\V1\Admin\CallingApiController@addnew');
 
 Route::get('getsetting/{setting}', 'Api\V1\Admin\SettingApiController@getSetting');
+
 
 Route::post('preorder_notify','Api\V1\Admin\CanteenApiController@preorder_notify');
 Route::post('topup_notify','Api\V1\Admin\CanteenApiController@topup_notify');
@@ -67,14 +68,12 @@ Route::group(['middleware' => 'auth:api'], function(){
     Route::post('assignment_detail', 'Api\V1\Admin\HomeworkApiController@assignment_detail');
     Route::post('student_remove_attachment', 'Api\V1\Admin\HomeworkApiController@student_remove_attachment');
     Route::get('logoutotherdevice','Api\V1\Admin\UsersApiController@logoutotherdevice');
+    
 
 });
 
 Route::post('send_notification', 'Api\V1\Admin\UsersApiController@send_notification');
-
-
 Route::get('register_firebasetoken', 'Api\V1\Admin\UsersApiController@register_firebasetoken');
-
 Route::group(['prefix' => 'v1', 'as' => 'api.', 'namespace' => 'Api\V1\Admin', 'middleware' => ['auth:api']], function () {
 
     // Permissions
@@ -96,3 +95,4 @@ Route::group(['prefix' => 'v1', 'as' => 'api.', 'namespace' => 'Api\V1\Admin', '
 
 });
 
+Route::get('/events', [EventsController::class, 'getEvent']);
