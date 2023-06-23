@@ -152,6 +152,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     // evenet
     Route::get('events','EventsController@index'); 
     Route::post('events','EventsController@store');
-    Route::get('getEvent','EventsController@getEvent');
     Route::delete('events','EventsController@deleteEvent');
+    Route::get('events/create','EventsController@show');
+    Route::get('getEvent','EventsController@getEvent');
 });

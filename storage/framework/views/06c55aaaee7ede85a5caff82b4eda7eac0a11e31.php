@@ -238,14 +238,13 @@
                     </a>
                 </li>
             <?php endif; ?>
-            <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('notification')): ?>
+            <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('lesson_access')): ?>
                 <li class="nav-item">
-                    
-                    class="nav-link <?php echo e(request()->is('admin/notify/*') ? 'active' : '', false); ?>">
-                    <i class="fa-fw fas fa-envelope nav-icon">
-
-                    </i>
-                    <?php echo e(trans('Events'), false); ?>
+                    <a href="events"
+                        class="nav-link <?php echo e(request()->is('admin/timetable') || request()->is('admin/timetable/*') ? 'active' : '', false); ?>">
+                        <i class="fa-fw fas fa-clock nav-icon">
+                        </i>
+                        <?php echo e(trans('Events'), false); ?>
 
                     </a>
                 </li>

@@ -13,6 +13,9 @@ class Event extends Model
         'title',
         'start',
         'end',
-   
+        'action',
+        'action_color',
+        'time',
+        'create_owner'
     ];
 }

@@ -230,14 +230,13 @@
                     </a>
                 </li>
             @endcan
-            @can('notification')
+            @can('lesson_access')
                 <li class="nav-item">
-                    {{-- <a href="{{ route('admin.evnets.index') }}" --}}
-                    class="nav-link {{ request()->is('admin/notify/*') ? 'active' : '' }}">
-                    <i class="fa-fw fas fa-envelope nav-icon">
-
-                    </i>
-                    {{ trans('Events') }}
+                    <a href="events"
+                        class="nav-link {{ request()->is('admin/timetable') || request()->is('admin/timetable/*') ? 'active' : '' }}">
+                        <i class="fa-fw fas fa-clock nav-icon">
+                        </i>
+                        {{ trans('Events') }}
                     </a>
                 </li>
             @endcan
