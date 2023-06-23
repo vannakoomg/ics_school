@@ -64,7 +64,6 @@ class AnnouncementController extends Controller
         }else{
             $fileName = 'no-image.png';
             }
-
             $data = array(
                 'user_id' => auth()->user()->id,
                 'title' => $request->input('txt_title'),
@@ -72,7 +71,6 @@ class AnnouncementController extends Controller
                 'thumbnail' => $fileName,
                 'send' => ($request->save_send=='send')?1:0,
             );
-
             $announcement = Announcement::create($data);
             $announcement->classes()->sync($request->input('txt_class', []));
 

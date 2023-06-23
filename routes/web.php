@@ -155,4 +155,8 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::delete('events','EventsController@deleteEvent');
     Route::get('events/create','EventsController@show');
     Route::get('getEvent','EventsController@getEvent');
+    // gallary
+    Route::get('gallary', 'GallaryController@index');
+    Route::get('gallary/create','GallaryController@create');
+    Route::post('gallary','GallaryController@store');
 });

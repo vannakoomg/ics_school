@@ -1,6 +1,5 @@
 <div class="sidebar">
     <nav class="sidebar-nav">
-
         <ul class="nav">
             <li class="nav-item">
                 <a href="<?php echo e(route('admin.home'), false); ?>" class="nav-link">
@@ -244,7 +243,18 @@
                         class="nav-link <?php echo e(request()->is('admin/timetable') || request()->is('admin/timetable/*') ? 'active' : '', false); ?>">
                         <i class="fa-fw fas fa-clock nav-icon">
                         </i>
-                        <?php echo e(trans('Events'), false); ?>
+                        <?php echo e(trans('events'), false); ?>
+
+                    </a>
+                </li>
+            <?php endif; ?>
+            <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('lesson_access')): ?>
+                <li class="nav-item">
+                    <a href="gallary"
+                        class="nav-link <?php echo e(request()->is('admin/timetable') || request()->is('admin/timetable/*') ? 'active' : '', false); ?>">
+                        <i class="fa-fw fas fa-clock nav-icon">
+                        </i>
+                        <?php echo e(trans('gallary'), false); ?>
 
                     </a>
                 </li>

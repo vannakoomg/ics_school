@@ -18,7 +18,6 @@ class EventsController extends Controller
       return $events;
     }
     public function store(Request $request){
-        
         $data = array(
                 'title' => $request->title,
                 'start' => $request->startdate,
