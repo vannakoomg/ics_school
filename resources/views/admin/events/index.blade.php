@@ -57,7 +57,6 @@
                 center: 'title', // right: 'month,basicWeek,basicDay'
                 right: 'month'
             },
-            // navLinks: true,
             editable: true,
             events: "http://127.0.0.1:8000/admin/getEvent",
             displayEventTime: false,
@@ -71,8 +70,6 @@
             selectable: true,
             selectHelper: true,
             select: function(start, end, allDay) {
-                // $('#eventsModal').modal('toggle');
-                // var title = prompt('Event Title ');
                 if (title) {
                     var start = moment(start, 'DD.MM.YYYY').format('YYYY-MM-DD');
                     var end = moment(end, 'DD.MM.YYYY').format('YYYY-MM-DD');

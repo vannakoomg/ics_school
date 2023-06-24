@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Event;
+use DateTime;
+
 class EventsController extends Controller
 {
     public function index(){
@@ -18,10 +20,13 @@ class EventsController extends Controller
       return $events;
     }
     public function store(Request $request){
+        $end  = new DateTime($request->end_date);
+        $end= $end->modify('+1 day' );
+        $endString= $end->format('Y-m-d');
         $data = array(
                 'title' => $request->title,
                 'start' => $request->startdate,
-                'end' => $request->end_date,
+                'end' => $endString,
                 'time' => $request->time,
                 'action' => $request->action,
                 'action_color'=>$request->action=="announcement"?"0XFFFFFF":"0XFF0000",
