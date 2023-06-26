@@ -74,9 +74,6 @@
 
                                 <td>
                                     {{ $schoolClass->name ?? '' }}
-                                    {{-- {{ $schoolClass->sorts ?? '' }}
-
-                                {{ $schoolClass->sorts1 ?? '' }} --}}
                                 </td>
                                 <td>
                                     {{ $schoolClass->campus ?? '' }}

@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Event;
 use DateTime;
+use App\EventsType;
+
 
 class EventsController extends Controller
 {
@@ -13,7 +15,8 @@ class EventsController extends Controller
       return view('admin.events.index');
     }
     public function show(){
-      return view('admin.events.create');
+      $eventsType = EventsType::all();
+      return view('admin.events.create', compact('eventsType'));
     }
     public function getEvent(){
       $events = Event::all();
@@ -29,15 +32,15 @@ class EventsController extends Controller
                 'end' => $endString,
                 'time' => $request->time,
                 'action' => $request->action,
-                'action_color'=>$request->action=="announcement"?"0XFFFFFF":"0XFF0000",
                 'create_owner'=>auth()->user()->name
             );
         $value=  Event::create($data);
         return redirect('admin/events');      
     }
-    public function deleteEvent(Request $request){
+    public function destroy(Request $request){
       $result = Event::find($request->id);
       $result->delete();
       return $request->id;
     }
+    
 }

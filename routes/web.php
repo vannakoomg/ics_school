@@ -152,9 +152,17 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     // evenet
     Route::get('events','EventsController@index'); 
     Route::post('events','EventsController@store');
-    Route::delete('events','EventsController@deleteEvent');
+    Route::delete('events','EventsController@destroy');
     Route::get('events/create','EventsController@show');
     Route::get('getEvent','EventsController@getEvent');
+    // events type
+    Route::get('events/type','EventTypeController@index');
+    Route::post('events/type','EventTypeController@store');
+    Route::delete('events/type','EventTypeController@destroy');
+    Route::get('events/type/create','EventTypeController@show');
+    Route::get('events/type/edit','EventTypeController@edit');
+    Route::post('events/type/{id}','EventTypeController@update');
+
     // gallary
     Route::get('gallary', 'GallaryController@index');
     Route::get('gallary/create','GallaryController@create');

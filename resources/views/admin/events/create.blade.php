@@ -36,8 +36,9 @@
                         <div class="form-group">
                             <label class="" for="template_id">Action</label>
                             <select name='action' class="custom-select select2">
-                                <option value="announcement">Announcement</option>
-                                <option value="dayoff">DayOff</option>
+                                @foreach ($eventsType as $Type)
+                                    <option value="{{ $Type->id }}">{{ $Type->name }}</option>
+                                @endforeach
                             </select>
                         </div>
 
