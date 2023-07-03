@@ -150,8 +150,8 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::post('calling_dashboard/action_notification/{rfid}', 'CallingController@action_notification')->name('calling.action_notification');
     Route::get('calling_dashboard/getwaitingvoice', 'CallingController@getwaitingvoice')->name('calling.getwaitingvoice');
     // evenet
-    Route::get('events','EventsController@index'); 
-    Route::post('events','EventsController@store');
+    Route::get('events','EventsController@index')->name('events.index'); 
+    Route::post('events','EventsController@store')->name('events.store');
     Route::delete('events','EventsController@destroy');
     Route::get('events/create','EventsController@show');
     Route::get('getEvent','EventsController@getEvent');
@@ -164,7 +164,12 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::post('events/type/{id}','EventTypeController@update');
 
     // gallary
-    Route::get('gallary', 'GallaryController@index');
-    Route::get('gallary/create','GallaryController@create');
-    Route::post('gallary','GallaryController@store');
+    Route::get('gallary', 'GallaryController@index')->name('gallary.index');
+    Route::get('gallary/create','GallaryController@create')->name('gallary.create');
+    Route::get('gallary/edit','GallaryController@edit');
+    Route::post('gallary','GallaryController@store')->name('gallary.store');
+    Route::get('gallary/init','GallaryController@initPhoto');
+    // Route::get('gallary/{id}','GallaryController@getOneGallary');
+    // Route::post('gallary','GallaryController@destroy');
+
 });

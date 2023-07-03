@@ -9,18 +9,9 @@
                     {{ trans('global.dashboard') }}
                 </a>
             </li>
-            {{-- @can('user_management_access') --}}
             @can('school-setup')
                 <li class="nav-title">{{ 'Setup Menu' }}</li>
             @endcan
-            {{-- <li class="nav-item nav-dropdown">
-                    <a class="nav-link  nav-dropdown-toggle" href="#">
-                        <i class="fa-fw fas fa-users nav-icon">
-
-                        </i>
-                        {{ trans('cruds.userManagement.title') }}
-                    </a>
-                    <ul class="nav-dropdown-items"> --}}
             @can('permission_access')
                 <li class="nav-item">
                     <a href="{{ route('admin.permissions.index') }}"
@@ -231,7 +222,7 @@
             @endcan
             @can('lesson_access')
                 <li class="nav-item">
-                    <a href="events"
+                    <a href={{ route('admin.events.index') }}
                         class="nav-link {{ request()->is('admin/timetable') || request()->is('admin/timetable/*') ? 'active' : '' }}">
                         <i class="fa-fw fas fa-clock nav-icon">
                         </i>
@@ -241,7 +232,7 @@
             @endcan
             @can('lesson_access')
                 <li class="nav-item">
-                    <a href="gallary"
+                    <a href={{ route('admin.gallary.index') }}
                         class="nav-link {{ request()->is('admin/timetable') || request()->is('admin/timetable/*') ? 'active' : '' }}">
                         <i class="fa-fw fas fa-clock nav-icon">
                         </i>

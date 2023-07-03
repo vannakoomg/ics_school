@@ -10,11 +10,9 @@
 
                 </a>
             </li>
-            
             <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('school-setup')): ?>
                 <li class="nav-title"><?php echo e('Setup Menu', false); ?></li>
             <?php endif; ?>
-            
             <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('permission_access')): ?>
                 <li class="nav-item">
                     <a href="<?php echo e(route('admin.permissions.index'), false); ?>"
@@ -239,7 +237,8 @@
             <?php endif; ?>
             <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('lesson_access')): ?>
                 <li class="nav-item">
-                    <a href="events"
+                    <a href=<?php echo e(route('admin.events.index'), false); ?>
+
                         class="nav-link <?php echo e(request()->is('admin/timetable') || request()->is('admin/timetable/*') ? 'active' : '', false); ?>">
                         <i class="fa-fw fas fa-clock nav-icon">
                         </i>
@@ -250,7 +249,8 @@
             <?php endif; ?>
             <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('lesson_access')): ?>
                 <li class="nav-item">
-                    <a href="gallary"
+                    <a href=<?php echo e(route('admin.gallary.index'), false); ?>
+
                         class="nav-link <?php echo e(request()->is('admin/timetable') || request()->is('admin/timetable/*') ? 'active' : '', false); ?>">
                         <i class="fa-fw fas fa-clock nav-icon">
                         </i>

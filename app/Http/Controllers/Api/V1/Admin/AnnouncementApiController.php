@@ -51,7 +51,7 @@ class AnnouncementApiController extends Controller
     }
 
     public function getAnnouncementDetail(Request $request){
-
+        
         if(!$request->has('announcement_id'))
             return response()->json(['status'=>false,'message'=>'Announcement ID is Required for this APi.','data'=>[]], 401);
         

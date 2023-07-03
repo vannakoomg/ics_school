@@ -48,7 +48,6 @@ class Announcement extends Model
         return asset('storage/image/' . $this->thumbnail);
     }
 
-
     public function getUpdatedAtAttribute($value){
         return $value ? Carbon::parse($value)->format('d/m/Y') : null;
     }

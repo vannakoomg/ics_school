@@ -1,27 +1,71 @@
 @extends('layouts.admin')
-
 @section('content')
     <div class="card">
         <div class="card-header">
-            {{ trans('global.create') }}
+            Create
         </div>
-    </div>
-    <div class="container">
-        <div>
-            <form method="POST" action="http://127.0.0.1:8000/admin/gallary" enctype="multipart/form-data">
-                {{ csrf_field() }}
+        <div class="card-body">
+            <form method="POST" action={{ route('admin.gallary.store') }} enctype="multipart/form-data" class="dropzone"
+                id="dropzone">
+                @csrf
                 <div class="form-group">
-                    <label class="required" for="title">title</label>
-                    <input class="form-control {{ $errors->has('name') ? 'is-invalid' : '' }}" type="text" name="title"
-                        id="title" value="{{ old('name', '') }}" required>
+                    <label class="requires" for="title">Title</label>
+                    <input type="text" class="form-control" name="title" id="title" value="" />
                 </div>
-                <div>
-                    <label>Choose Images</label>
-                    <input type="file" name="images" multiple>
+                <div class="form-group">
+                    <label class="" for="description">Description</label>
+                    <input type="text" class="form-control" name="description" id="description" />
                 </div>
-                <hr>
-                <button type="submit">Submit</button>
             </form>
+            <button class="btn btn-success mt-3  pl-4 pr-4" type="submit" id="uploadfiles">
+                {{ trans('global.save') }}
+            </button>
         </div>
     </div>
+@endsection
+@section('scripts')
+    <script type="text/javascript">
+        Dropzone.autoDiscover = false;
+        var myDropzone = new Dropzone(".dropzone", {
+            headers: {
+                'X-CSRFToken': $('meta[name="token"]').attr('content')
+            },
+            autoProcessQueue: false,
+            uploadMultiple: true,
+            parallelUploads: 10000, // Number of files process at a time (default 2)
+            maxFilesize: 10000, //maximum file size 2MB
+            maxFiles: 100,
+            addRemoveLinks: "true",
+            acceptedFiles: ".jpeg,.jpg,.png,.pdf",
+            dictDefaultMessage: '<div class="dropzone_bx"><button type="button">Browse a file</button></div>',
+            dictResponseError: 'Error uploading file!',
+            thumbnailWidth: "150",
+            thumbnailHeight: "150",
+            createImageThumbnails: true,
+            dictRemoveFile: "Remove",
+        });
+        Dropzone.autoDiscover = false;
+
+        // var myDropzone2 = new Dropzone("div#add-photos-edit", {
+        //     /*
+        //      * Your configuration
+        //      */
+        // });
+
+        // $('#add').on("click", function(e) {
+
+        //     var max_photos = $("#num_photos").val();
+        //     max_photos = 5 - max_photos;
+        //     $("#add-photos").fadeIn();
+
+        //     myDropzone2.options.maxFiles = max_photos;
+
+        // });
+        myDropzone.on("success", function(file, response) {
+            console.log(response);
+        });
+        $('#uploadfiles').click(function() {
+            myDropzone.processQueue();
+        });
+    </script>
 @endsection
