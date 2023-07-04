@@ -38,7 +38,7 @@
     @can('school_class_create')
         <div style="margin-bottom: 10px;" class="row">
             <div class="col-lg-12">
-                <a class="btn btn-success" href="gallary/create">
+                <a class="btn btn-success" href="{{ route('admin.gallary.create') }}">
                     Add Gallary
                 </a>
             </div>
@@ -47,7 +47,8 @@
     @can('school_class_create')
         <div class="d-flex flex-wrap">
             @foreach ($gallary as $gallarysss)
-                <a class="btn" href="gallary/edit?id={{ $gallarysss->id }}" style="background-color: rgb(128, 132, 132)">
+                <a class="btn" href="{{ route('admin.gallary.edit', $gallarysss->id) }}"
+                    style="background-color: rgb(128, 132, 132)">
                     {{ $gallarysss->name }}
                 </a>
             @endforeach

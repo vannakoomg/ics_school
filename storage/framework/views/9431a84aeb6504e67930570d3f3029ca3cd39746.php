@@ -14,11 +14,15 @@
     <div class="container-fluid">
         <div style="margin-bottom: 10px; margin-top: 30px" class="row">
             <div class="col-lg-12">
-                <a class="btn btn-success" href="events/create">
+                <a class="btn btn-success" href="<?php echo e(route('admin.events.create'), false); ?>">
                     Add Events
+                </a>
+                <a class="btn btn-success" href="<?php echo e(route('admin.eventsType.index'), false); ?>">
+                    Add Type
                 </a>
             </div>
         </div>
+
         <div class="modal fade" id="reModal" tabindex="-1" aria-labelledby="reModalLabel">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -58,7 +62,7 @@
                 right: 'month'
             },
             editable: true,
-            events: "http://127.0.0.1:8000/admin/getEvent",
+            events: "getEvent",
             displayEventTime: false,
             eventRender: function(event, element, view) {
                 if (event.allDay === 'true') {
@@ -74,7 +78,7 @@
                     var start = moment(start, 'DD.MM.YYYY').format('YYYY-MM-DD');
                     var end = moment(end, 'DD.MM.YYYY').format('YYYY-MM-DD');
                     $.ajax({
-                        url: "http://127.0.0.1:8000/admin/events",
+                        url: "events",
                         data: "title=" + title + "&start=" + start + "&end=" + end +
                             '&_token=' +
                             "<?php echo e(csrf_token(), false); ?>",
@@ -93,7 +97,7 @@
                 if (deleteMsg) {
                     $.ajax({
                         type: "DELETE",
-                        url: "http://127.0.0.1:8000/admin/events",
+                        url: "events",
                         data: "id=" + event.id + '&_token=' + "<?php echo e(csrf_token(), false); ?>",
                         success: function(response) {
                             if (parseInt(response) > 0) {

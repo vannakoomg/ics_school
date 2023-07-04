@@ -7,7 +7,7 @@
 
         </div>
         <div class="card-body">
-            <form method="POST" action="http://127.0.0.1:8000/admin/events" enctype="multipart/form-data">
+            <form method="POST" action="<?php echo e(route('admin.events.index'), false); ?>" enctype="multipart/form-data">
                 <?php echo csrf_field(); ?>
                 <div class="row">
                     <div class="col-4">

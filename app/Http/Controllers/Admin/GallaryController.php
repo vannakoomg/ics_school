@@ -26,29 +26,42 @@ class GallaryController extends Controller
         $data = $request->file('file');
         foreach ($data as $files) {
                     $filed = $files->move(public_path('storage/image'));
-
         $files =$files->getClientOriginalName();
         GallaryDetile::create([
             'filename' => $files,
-            "gallary_id"=>$lastId->id       ,
+            "gallary_id"=>$lastId->id,
         ]);
         }
     }
     public function edit(Request $request){
         $gallary = Gallary::find($request->id);
-        // $gallaryDetail = GallaryDetile::all()->where('gallary_id','=',$request->id);
-        // $file_ext = array('png','jpg','jpeg','pdf'); 
-        // foreach (File::allFiles(public_path($gallary)) as $file) { 
-        // $extension = strtolower($file->getExtension()); 
-        //  if(in_array($extension,$file_ext)){ // Check file extension 
-        //      $filename = $file->getFilename(); 
-        //      $size = $file->getSize(); // Bytes 
-        //      $sizeinMB = round($size / (1000 * 1024), 2);// MB 
-        //   } ;
         return view('admin.gallary.edit', compact('gallary'));
     }
     public function initPhoto(Request $request){
      $gallaryDetail = GallaryDetile::all()->where('gallary_id','=',$request->id);
      return $gallaryDetail;
+    }
+    public function update(Request $request ,$id){
+        $gallary = Gallary::find($id);
+        $gallary->name = $request->title;
+        $gallary->description=$request->description;
+        $gallary->save();
+        if(!empty($request->file('file'))){
+        $data = $request->file('file');
+        foreach ($data as $files) {
+        $filed = $files->move(public_path('storage/image'));
+        $files =$files->getClientOriginalName();
+        GallaryDetile::create([
+            'filename' => $files,
+            "gallary_id"=>"$id",
+        ]);
+        }
+        }
+        $gallary = Gallary::all();
+        return view('admin.gallary.index' , compact("gallary"));
+    }
+    public function destroy(Request $request ){
+        $gallaryDetail = GallaryDetile::find($request->id);
+        $gallaryDetail->delete();  
     }
 }

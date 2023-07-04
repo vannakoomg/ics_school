@@ -6,7 +6,7 @@
             {{ trans('global.create') }}
         </div>
         <div class="card-body">
-            <form method="POST" action="http://127.0.0.1:8000/admin/events" enctype="multipart/form-data">
+            <form method="POST" action="{{ route('admin.events.index') }}" enctype="multipart/form-data">
                 @csrf
                 <div class="row">
                     <div class="col-4">

@@ -6,8 +6,7 @@
             {{ trans('global.edit') }}
         </div>
         <div class="card-body container-fluid">
-            <form method="POST" action="http://127.0.0.1:8000/admin/events/type/{{ $eventsType->id }}"
-                enctype="multipart/form-data">
+            <form method="POST" action={{ route('admin.eventsType.update', $eventsType->id) }} enctype="multipart/form-data">
                 @csrf
                 <div class="row">
                     <div class="col-6">

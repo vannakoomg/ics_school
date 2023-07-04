@@ -38,7 +38,7 @@
     <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('school_class_create')): ?>
         <div style="margin-bottom: 10px;" class="row">
             <div class="col-lg-12">
-                <a class="btn btn-success" href="gallary/create">
+                <a class="btn btn-success" href="<?php echo e(route('admin.gallary.create'), false); ?>">
                     Add Gallary
                 </a>
             </div>
@@ -47,7 +47,8 @@
     <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('school_class_create')): ?>
         <div class="d-flex flex-wrap">
             <?php $__currentLoopData = $gallary; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $gallarysss): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                <a class="btn" href="gallary/edit?id=<?php echo e($gallarysss->id, false); ?>" style="background-color: rgb(128, 132, 132)">
+                <a class="btn" href="<?php echo e(route('admin.gallary.edit', $gallarysss->id), false); ?>"
+                    style="background-color: rgb(128, 132, 132)">
                     <?php echo e($gallarysss->name, false); ?>
 
                 </a>

@@ -6,12 +6,13 @@
             @can('school_class_create')
                 <div style="margin-bottom: 10px;" class="row">
                     <div class="col-lg-12">
-                        <a class="btn btn-success" href="type/create">
-                            {{ trans('global.add') }} {{ trans('cruds.schoolClass.title_singular') }}
+                        <a class="btn btn-success" href={{ route('admin.eventsType.create') }}>
+                            {{ trans('global.add') }} Events
                         </a>
                     </div>
                 </div>
             @endcan
+
             <div class="table-responsive">
                 <table class=" table table-bordered table-striped table-hover datatable datatable-SchoolClass">
                     <thead>
@@ -43,14 +44,13 @@
 
                                 <td>
                                     @can('school_class_edit')
-                                        <a class="btn btn-xs btn-info"
-                                            href="http://127.0.0.1:8000/admin/events/type/edit?id={{ $type->id }}">
+                                        <a class="btn btn-xs btn-info" href={{ route('admin.eventsType.edit', [$type->id]) }}>
                                             {{ trans('global.edit') }}
                                         </a>
                                     @endcan
                                     @can('school_class_delete')
-                                        <form action="http://127.0.0.1:8000/admin/events/type?id={{ $type->id }}"
-                                            method="POST" onsubmit="return confirm('{{ trans('global.areYouSure') }}');"
+                                        <form action={{ route('admin.eventsType.destroy', $type->id) }} method="POST"
+                                            onsubmit="return confirm('{{ trans('global.areYouSure') }}');"
                                             style="display: inline-block;">
                                             <input type="hidden" name="_method" value="DELETE">
                                             <input type="hidden" name="_token" value="{{ csrf_token() }}">

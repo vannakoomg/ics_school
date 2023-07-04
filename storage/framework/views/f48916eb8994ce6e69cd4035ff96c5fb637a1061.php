@@ -6,13 +6,13 @@
             <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('school_class_create')): ?>
                 <div style="margin-bottom: 10px;" class="row">
                     <div class="col-lg-12">
-                        <a class="btn btn-success" href="type/create">
-                            <?php echo e(trans('global.add'), false); ?> <?php echo e(trans('cruds.schoolClass.title_singular'), false); ?>
-
+                        <a class="btn btn-success" href=<?php echo e(route('admin.eventsType.create'), false); ?>>
+                            <?php echo e(trans('global.add'), false); ?> Events
                         </a>
                     </div>
                 </div>
             <?php endif; ?>
+
             <div class="table-responsive">
                 <table class=" table table-bordered table-striped table-hover datatable datatable-SchoolClass">
                     <thead>
@@ -47,15 +47,14 @@
 
                                 <td>
                                     <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('school_class_edit')): ?>
-                                        <a class="btn btn-xs btn-info"
-                                            href="http://127.0.0.1:8000/admin/events/type/edit?id=<?php echo e($type->id, false); ?>">
+                                        <a class="btn btn-xs btn-info" href=<?php echo e(route('admin.eventsType.edit', [$type->id]), false); ?>>
                                             <?php echo e(trans('global.edit'), false); ?>
 
                                         </a>
                                     <?php endif; ?>
                                     <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('school_class_delete')): ?>
-                                        <form action="http://127.0.0.1:8000/admin/events/type?id=<?php echo e($type->id, false); ?>"
-                                            method="POST" onsubmit="return confirm('<?php echo e(trans('global.areYouSure'), false); ?>');"
+                                        <form action=<?php echo e(route('admin.eventsType.destroy', $type->id), false); ?> method="POST"
+                                            onsubmit="return confirm('<?php echo e(trans('global.areYouSure'), false); ?>');"
                                             style="display: inline-block;">
                                             <input type="hidden" name="_method" value="DELETE">
                                             <input type="hidden" name="_token" value="<?php echo e(csrf_token(), false); ?>">

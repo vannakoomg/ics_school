@@ -6,8 +6,8 @@
             Edit
         </div>
         <div class="card-body">
-            <form method="POST" action="http://127.0.0.1:8000/admin/gallary" enctype="multipart/form-data" class="dropzone"
-                id="dropzone">
+            <form method="POST" action={{ route('admin.gallary.update', $gallary->id) }} enctype="multipart/form-data"
+                class="dropzone" id="dropzone">
                 @csrf
                 <div class="form-group">
                     <label class="requires" for="title">Title</label>
@@ -18,10 +18,11 @@
                     <input type="text" class="form-control" name="description" id="description"
                         value="{{ $gallary->description }}" />
                 </div>
+                <button class="btn btn-success mt-4" type="submit" id="update-btn">
+                    {{ trans('global.save') }}
+                </button>
             </form>
-            <button class="btn btn-success mt-4" type="submit" id="update-btn">
-                {{ trans('global.save') }}
-            </button>
+
         </div>
     </div>
 @endsection
@@ -31,33 +32,39 @@
         var myDropzone = new Dropzone(".dropzone", {
             autoProcessQueue: false,
             uploadMultiple: true,
+            addRemoveLinks: true,
+
             parallelUploads: 100, // Number of files process at a time (default 2)
             maxFilesize: 100, //maximum file size 2MB
-            maxFiles: 50,
-            addRemoveLinks: "true",
+            maxFiles: 100,
             acceptedFiles: ".jpeg,.jpg,.png,.pdf",
             dictDefaultMessage: '<div class="dropzone_bx"><button type="button">Browse a file</button></div>',
             dictResponseError: 'Error uploading file!',
-            thumbnailWidth: "150",
-            thumbnailHeight: "150",
+            parallelChunkUploads: true,
             createImageThumbnails: true,
             dictRemoveFile: "Remove",
             init: function() { // start of getting existing imahes
                 myDropzone = this;
+
                 $.ajax({
-                    url: "http://127.0.0.1:8000/admin/gallary/init",
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+                    },
+                    url: '{{ route('admin.gallary.init') }}',
                     type: "GET",
                     data: {
-                        id: 1,
+                        id: {{ $gallary->id }},
                         _token: $('meta[name="csrf-token"]').attr("content")
                     },
                     dataType: "json",
+
                     success: function(response) { // get result
                         console.log(response);
                         $.each(response, function(key, value) {
                             var mockFile = {
                                 name: value.filename,
-                                size: value.size
+                                size: value.size,
+                                id: value.id
                             };
                             myDropzone.options.addedfile.call(
                                 myDropzone,
@@ -73,22 +80,36 @@
                             $("[data-dz-thumbnail]").css("object-fit", "cover");
                         });
 
-                        // myDropzone.on("sending", function(file, xhr, formData) {
-                        //     // Append all form inputs to the formData Dropzone will POST
-                        //     var data = $("#editForm").serializeArray();
-                        //     $.each(data, function(key, el) {
-                        //         formData.append(el.name, el.value);
-                        //     });
-                        // });
                     }
                 });
+            },
+            removedfile: function(file) {
+                var name = file.filename;
+                console.log(file.id);
+                $.ajax({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+                    },
+                    url: '{{ route('admin.gallary.destroy') }}',
+                    type: 'POST',
+                    data: "id=" + file.id + '&_token=' + "{{ csrf_token() }}",
+                    dataType: 'html',
+                    success: function(data) {
+                        console.log("successfully removed!!");
+                    },
+                    error: function(e) {
+                        console.log("Error removed!!");
+                    }
+                });
+                var fileRef;
+                return (fileRef = file.previewElement) != null ?
+                    fileRef.parentNode.removeChild(file.previewElement) : void 0;
             },
         });
         myDropzone.on("success", function(file, response) {
             console.log(response);
         });
-        $('#update-btn').click(function() {
-            e.preventDefault();
+        $('#update-btn').click(function(e) {
             myDropzone.processQueue();
         });
     </script>

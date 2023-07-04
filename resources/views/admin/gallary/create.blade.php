@@ -45,22 +45,6 @@
             dictRemoveFile: "Remove",
         });
         Dropzone.autoDiscover = false;
-
-        // var myDropzone2 = new Dropzone("div#add-photos-edit", {
-        //     /*
-        //      * Your configuration
-        //      */
-        // });
-
-        // $('#add').on("click", function(e) {
-
-        //     var max_photos = $("#num_photos").val();
-        //     max_photos = 5 - max_photos;
-        //     $("#add-photos").fadeIn();
-
-        //     myDropzone2.options.maxFiles = max_photos;
-
-        // });
         myDropzone.on("success", function(file, response) {
             console.log(response);
         });

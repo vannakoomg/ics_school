@@ -152,24 +152,23 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     // evenet
     Route::get('events','EventsController@index')->name('events.index'); 
     Route::post('events','EventsController@store')->name('events.store');
-    Route::delete('events','EventsController@destroy');
-    Route::get('events/create','EventsController@show');
-    Route::get('getEvent','EventsController@getEvent');
+    Route::delete('events','EventsController@destroy')->name('events.destroy');
+    Route::get('events/create','EventsController@show')->name('events.create');
+    Route::get('getEvent','EventsController@getEvent')->name('events.getEvents');
     // events type
-    Route::get('events/type','EventTypeController@index');
-    Route::post('events/type','EventTypeController@store');
-    Route::delete('events/type','EventTypeController@destroy');
-    Route::get('events/type/create','EventTypeController@show');
-    Route::get('events/type/edit','EventTypeController@edit');
-    Route::post('events/type/{id}','EventTypeController@update');
+    Route::get('events/type','EventTypeController@index')->name('eventsType.index');
+    Route::post('events/type','EventTypeController@store')->name('eventsType.store');
+    Route::delete('events/type/{id}','EventTypeController@destroy')->name('eventsType.destroy');
+    Route::get('events/type/create','EventTypeController@show')->name('eventsType.create');
+    Route::get('events/type/{id}/edit','EventTypeController@edit')->name('eventsType.edit');
+    Route::post('events/type/{id}/update','EventTypeController@update')->name('eventsType.update');
 
     // gallary
-    Route::get('gallary', 'GallaryController@index')->name('gallary.index');
+    Route::post('gallary/destroy','GallaryController@destroy')->name('gallary.destroy');
+    Route::get('gallary','GallaryController@index')->name('gallary.index');
     Route::get('gallary/create','GallaryController@create')->name('gallary.create');
-    Route::get('gallary/edit','GallaryController@edit');
+    Route::get('gallary/{id}/edit','GallaryController@edit')->name('gallary.edit');
     Route::post('gallary','GallaryController@store')->name('gallary.store');
-    Route::get('gallary/init','GallaryController@initPhoto');
-    // Route::get('gallary/{id}','GallaryController@getOneGallary');
-    // Route::post('gallary','GallaryController@destroy');
-
+    Route::post('gallary/{id}/update','GallaryController@update')->name('gallary.update');
+    Route::get('gallary/init','GallaryController@initPhoto')->name('gallary.init');
 });

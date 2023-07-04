@@ -80,7 +80,6 @@
                                 <td>
                                     <?php echo e($schoolClass->name ?? '', false); ?>
 
-                                    
                                 </td>
                                 <td>
                                     <?php echo e($schoolClass->campus ?? '', false); ?>
